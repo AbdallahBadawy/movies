@@ -17,10 +17,9 @@ class NowPlayingComponment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
+      buildWhen: (previous, current) =>
+          previous.nowPlayingState != current.nowPlayingState,
       builder: (context, state) {
-        if (kDebugMode) {
-          print(state);
-        }
         switch (state.nowPlayingState) {
           case RequestState.loading:
             return const SizedBox(

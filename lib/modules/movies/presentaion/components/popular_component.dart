@@ -15,6 +15,8 @@ class PopularComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
+      buildWhen: (previous, current) =>
+          previous.popularState != current.popularState,
       builder: (context, state) {
         return FadeIn(
           duration: const Duration(milliseconds: 500),
